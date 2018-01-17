@@ -88,8 +88,8 @@ public class CallServiceFragment extends Fragment {
                     arrayTime.add(timestamp);
 
                 }
-                Log.d("arrayID", arrayID.toString());
-                Log.d("arrayShowQue", arrayShowQue.toString());
+                //Log.d("arrayID", arrayID.toString());
+                //Log.d("arrayShowQue", arrayShowQue.toString());
             } catch (JSONException e) {
                 Log.e("log_queDepartment", "Error parsing data " + e.toString());
             }

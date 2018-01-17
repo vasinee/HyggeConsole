@@ -83,9 +83,12 @@ public class CallServiceCustomAdapter extends BaseAdapter
             @Override
             public void onClick(View v) {
                 Toast.makeText(mInlfater.getContext(), " "+arrayID.get(position).toString() , Toast.LENGTH_SHORT).show();
-                sp = mInlfater.getContext().getSharedPreferences("PATIENT_ID", Context.MODE_PRIVATE);
+                String id = arrayID.get(position).toString();
+                String selectQue = arrayShowQue.get(position).toString();
+                sp = mInlfater.getContext().getSharedPreferences("HYGGE_CONSOLE", Context.MODE_PRIVATE);
                 editor = sp.edit();
-                editor.putString("id",arrayID.get(position).toString());
+                editor.putString("id", id);
+                editor.putString("selectQue", selectQue);
                 editor.commit();
 
                 SelectStationFragment selectStationFragment = new SelectStationFragment();
