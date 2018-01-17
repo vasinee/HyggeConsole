@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             HomeFragment homeFragment = new HomeFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, homeFragment);
-            transaction.addToBackStack(null);
             transaction.commit();
         }
 

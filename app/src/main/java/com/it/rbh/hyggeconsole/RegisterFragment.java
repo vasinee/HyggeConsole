@@ -104,6 +104,7 @@ public class RegisterFragment extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
+            inputCID.setText("");
 
         }
     }

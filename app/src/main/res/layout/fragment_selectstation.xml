@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conSelectStation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="เรียกผู้ป่วยเข้ารับบริการ"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="คิวที่เรียกรับบริการ : "
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCallQue"
+        app:layout_constraintEnd_toStartOf="@+id/tvCallQue"
+        app:layout_constraintStart_toStartOf="@+id/station1" />
+
+    <TextView
+        android:id="@+id/tvCallQue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:text="A025"
+        android:textColor="@color/color0a69af"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="เลือกช่องรับบริการ"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/tvCallQue" />
+
+    <Button
+        android:id="@+id/station1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="STATION 1"
+        app:layout_constraintEnd_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <Button
+        android:id="@+id/station2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Station 2"
+        app:layout_constraintEnd_toEndOf="@+id/station1"
+        app:layout_constraintStart_toStartOf="@+id/station1"
+        app:layout_constraintTop_toBottomOf="@+id/station1" />
+
+    <Button
+        android:id="@+id/station3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="STATION 3"
+        app:layout_constraintEnd_toEndOf="@+id/station2"
+        app:layout_constraintStart_toStartOf="@+id/station2"
+        app:layout_constraintTop_toBottomOf="@+id/station2" />
+
+    <Button
+        android:id="@+id/station4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="STATION 4"
+        app:layout_constraintEnd_toEndOf="@+id/station3"
+        app:layout_constraintStart_toStartOf="@+id/station3"
+        app:layout_constraintTop_toBottomOf="@+id/station3" />
+
+    <Button
+        android:id="@+id/station5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="STATION 5"
+        app:layout_constraintEnd_toEndOf="@+id/station4"
+        app:layout_constraintStart_toStartOf="@+id/station4"
+        app:layout_constraintTop_toBottomOf="@+id/station4" />
+
+</android.support.constraint.ConstraintLayout>
