@@ -38,7 +38,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:text="กรุณาใส่ username และ password \nเพื่อเข้าใช้งานระบบ"
+        android:text="คุณต้องกาที่จะออกจากระบบใช่หรือไม่"
         android:textAlignment="center"
         android:textColor="@color/color_425955"
         android:textSize="18sp"
@@ -47,78 +47,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
-    <EditText
-        android:id="@+id/editUsername"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:hint="USERNAME"
-        android:textAlignment="center"
-        android:textColorHint="#C0C0C0"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <EditText
-        android:id="@+id/editPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:hint="PASSWORD"
-        android:inputType="textPassword"
-        android:padding="15dp"
-        android:textAlignment="center"
-        android:textColorHint="#C0C0C0"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/editUsername" />
-
-    <TextView
-        android:id="@+id/tvNoti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:textAlignment="center"
-        android:textColor="@color/color_dc3843"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/editPassword"
-        app:layout_constraintStart_toStartOf="@+id/editPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNoti"
-        app:layout_constraintVertical_bias="0.049">
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.019">
 
         <Button
             android:id="@+id/btnCancel"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ยกเลิก" />
+            android:text="ไม่" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnLogout"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="เข้าใช้งาน"
+            android:text="ออกจากระบบ"
             tools:layout_editor_absoluteX="256dp"
             tools:layout_editor_absoluteY="303dp" />
     </LinearLayout>

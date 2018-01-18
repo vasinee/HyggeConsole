@@ -45,11 +45,11 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     SharedPreferences sp;
     SharedPreferences.Editor editor;
-    String hospcodeLogin, depname, depcode;
+    String hospcodeLogin, depname, depcode, prefix;
     ConstraintLayout homeLayout;
     HospitalDepCustomAdapter adapter;
     ListView lvDepartment;
-    ArrayList<String> arrayDepName, arrayDepCode;
+    ArrayList<String> arrayDepName, arrayDepCode, arrayPrefix;
     HomeAsyncTask homeAsyncTask;
 
 
@@ -66,13 +66,14 @@ public class HomeFragment extends Fragment {
         editor = sp.edit();
 
         hospcodeLogin = sp.getString("hospcode", null);
-        Log.d("hospcodeLogin", hospcodeLogin);
+        //Log.d("hospcodeLogin", hospcodeLogin);
 
         homeLayout = (ConstraintLayout) rootView.findViewById(R.id.homeLayout);
         lvDepartment = (ListView) rootView.findViewById(R.id.lvDepartment);
 
         arrayDepName = new ArrayList<>();
         arrayDepCode = new ArrayList<>();
+        arrayPrefix = new ArrayList<>();
 
         homeAsyncTask = new HomeFragment.HomeAsyncTask();
         homeAsyncTask.execute();
@@ -94,8 +95,10 @@ public class HomeFragment extends Fragment {
                     JSONObject jo = jArray.getJSONObject(i);
                     depcode = jo.getString("department_his");
                     depname= jo.getString("department_name");
+                    prefix = jo.getString("department_prefix");
                     arrayDepName.add(depname);
                     arrayDepCode.add(depcode);
+                    arrayPrefix.add(prefix);
                 }
                 Log.d("arrayDepName", arrayDepName.toString());
                 Log.d("arrayDepCode", arrayDepCode.toString());
@@ -124,7 +127,7 @@ public class HomeFragment extends Fragment {
             progressDialog.dismiss();
             homeLayout.setVisibility(View.VISIBLE);
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            adapter = new HospitalDepCustomAdapter(getActivity(), arrayDepName, arrayDepCode, transaction);
+            adapter = new HospitalDepCustomAdapter(getActivity(), arrayDepName, arrayDepCode,arrayPrefix, transaction);
             lvDepartment.setAdapter(adapter);
         }
     }

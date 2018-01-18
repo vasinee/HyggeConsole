@@ -2,6 +2,7 @@ package com.it.rbh.hyggeconsole;
 
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
@@ -40,7 +42,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     DrawerLayout drawer;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     EditText editUsername, editPassword;
     TextView tvFail;
     MainActivity.LoginAsyncTask loginAsyncTask;
+    RelativeLayout content;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,19 +63,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //toolbar.setLogo(R.drawable.hygge_head);
-
-        drawer = (DrawerLayout) findViewById(R.id.drawer);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        toolbar.setLogo(R.drawable.head);
 
         sp = getSharedPreferences("HYGGE_CONSOLE", Context.MODE_PRIVATE);
         editor = sp.edit();
+
 
         userLogin = sp.getString("username", null);
        // Log.d("username", userLogin);
@@ -167,18 +162,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         protected void onPreExecute() {
             super.onPreExecute();
             progressDialog = ProgressDialog.show(MainActivity.this, "", "กำลังโหลดข้อมูล");
-            alertDialog.cancel();
+            //alertDialog.cancel();
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
-            HomeFragment homeFragment = new HomeFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, homeFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            if (user == "fail"){
+                tvFail.setVisibility(View.VISIBLE);
+                tvFail.setText("ไม่พบข้อมูลของคุณในระบบ");
+            }else {
+                HomeFragment homeFragment = new HomeFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, homeFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                alertDialog.cancel();
+            }
         }
     }
 
@@ -221,22 +222,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_sitting) {
-            editor.clear();
-            editor.commit();
-            popupLogin();
-
+            builder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = getLayoutInflater();
+            View view = inflater.inflate(R.layout.fragment_logout, null);
+            builder.setView(view);
+            alertDialog = builder.create();
+            alertDialog.show();
+            Button btnCancle = (Button) view.findViewById(R.id.btnCancel);
+            btnCancle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialog.cancel();
+                }
+            });
+            Button btnLogout = (Button) view.findViewById(R.id.btnLogout);
+            btnLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    editor.clear();
+                    editor.commit();
+                    finish();
+                }
+            });
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean onNavigationItemSelected(MenuItem item) {
-        return true;
-    }
-
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        }
         int count = getFragmentManager().getBackStackEntryCount();
         if (count == 0) {
             super.onBackPressed();
@@ -245,4 +257,3 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 }
-

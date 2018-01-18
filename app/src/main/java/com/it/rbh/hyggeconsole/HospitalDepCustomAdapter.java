@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class HospitalDepCustomAdapter extends BaseAdapter {
     LayoutInflater mInlfater;
-    ArrayList arrayDepName, arrayDepCode;
+    ArrayList arrayDepName, arrayDepCode, arrayPrefix;
     Activity context;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
@@ -26,12 +26,13 @@ public class HospitalDepCustomAdapter extends BaseAdapter {
 
 
         public HospitalDepCustomAdapter(Activity context, ArrayList<String> arrayDepName,
-                                        ArrayList<String> arrayDepCode, FragmentTransaction transaction)
+                                        ArrayList<String> arrayDepCode, ArrayList<String> arrayPrefix, FragmentTransaction transaction)
         {
             this.context = context;
             mInlfater = context.getLayoutInflater();
             this.arrayDepName = arrayDepName;
             this.arrayDepCode = arrayDepCode;
+            this.arrayPrefix = arrayPrefix;
             this.transaction = transaction;
 
         }
@@ -72,10 +73,12 @@ public class HospitalDepCustomAdapter extends BaseAdapter {
                 public void onClick(View view) {
                     Toast.makeText(mInlfater.getContext(), " "+arrayDepCode.get(position).toString() , Toast.LENGTH_SHORT).show();
                     String depcode = arrayDepCode.get(position).toString();
-                    Log.v("depcode", depcode);
+                    String prefix = arrayPrefix.get(position).toString();
+
                     sp = mInlfater.getContext().getSharedPreferences("HYGGE_CONSOLE", Context.MODE_PRIVATE);
                     editor = sp.edit();
                     editor.putString("depcode", depcode);
+                    editor.putString("prefix", prefix);
                     editor.commit();
 
                     ConsoleFragment consoleFragment = new ConsoleFragment();

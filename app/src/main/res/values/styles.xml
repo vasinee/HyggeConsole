@@ -9,9 +9,10 @@
     </style>
 
     <style name="HyggeConsole.Theme" parent="Theme.AppCompat.Light.NoActionBar" >
-        <item name="colorPrimary">@color/colore1cba6</item>
-        <item name="colorPrimaryDark">@color/colordecfb8</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/color_d8d5b9</item>
+        <item name="colorPrimaryDark">@color/color_425955</item>
+        <item name="colorAccent">@color/color_dc3843</item>
     </style>
+
 
 </resources>

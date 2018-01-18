@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class RegisterFragment extends Fragment {
     EditText inputCID;
     Button btnAdd;
-    String cid, depcode, hospcode;
+    String cid, depcode, hospcode, prefix;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
     TextView tvNoti;
@@ -42,8 +42,9 @@ public class RegisterFragment extends Fragment {
         editor = sp.edit();
         depcode = sp.getString("depcode", null);
         hospcode = sp.getString("hospcode", null);
-        tvNoti = (TextView)rootView.findViewById(R.id.tvNoti);
+        prefix = sp.getString("prefix", null);
 
+        tvNoti = (TextView)rootView.findViewById(R.id.tvNoti);
 
         inputCID = (EditText) rootView.findViewById(R.id.inputCID);
 
@@ -56,6 +57,7 @@ public class RegisterFragment extends Fragment {
                 if (cid.length() != 13){
                     tvNoti.setVisibility(View.VISIBLE);
                 }else{
+                    tvNoti.setVisibility(View.GONE);
                     Log.v("RegisterFragment", hospcode+","+depcode+","+cid);
                     RegisterFragment.RegistersyncTask registersyncTask;
                     registersyncTask = new RegisterFragment.RegistersyncTask();
@@ -76,10 +78,11 @@ public class RegisterFragment extends Fragment {
                 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
                 nameValuePairs.add(new BasicNameValuePair("hospcode",hospcode));
                 nameValuePairs.add(new BasicNameValuePair("depcode",depcode));
+                nameValuePairs.add(new BasicNameValuePair("prefix",prefix));
                 nameValuePairs.add(new BasicNameValuePair("cid",cid));
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new HttpPost("http://hyggemedicalservice.com/hygge_console_app/registerFragment.php");
-                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 httpclient.execute(httppost);
             }catch(Exception e){
                 Log.d("log_err", "Error in http connection " + e.toString());

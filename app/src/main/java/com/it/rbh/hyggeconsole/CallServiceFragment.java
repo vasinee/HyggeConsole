@@ -1,6 +1,7 @@
 package com.it.rbh.hyggeconsole;
 
 
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,11 +10,15 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -32,6 +37,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
 public class CallServiceFragment extends Fragment {
     ConstraintLayout conCallService;
     ListView lvQue;
@@ -39,8 +46,10 @@ public class CallServiceFragment extends Fragment {
     CallServiceFragment.CallServiceAsyncTask callServiceAsyncTask;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
-    String hospcode, depcode, id, qid, showQue, cid, timestamp;
+    String hospcode, depcode, id, showQue, cid, timestamp;
     ArrayList<String> arrayID, arrayShowQue, arrayTime, arrayCID;
+    PopupWindow menuPopup;
+    View menuView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -81,7 +90,6 @@ public class CallServiceFragment extends Fragment {
                     showQue = jo.getString("showQue");
                     cid = jo.getString("cid");
                     timestamp = jo.getString("timestamp");
-
                     arrayID.add(id);
                     arrayShowQue.add(showQue);
                     arrayCID.add(cid);
@@ -113,10 +121,28 @@ public class CallServiceFragment extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
-            conCallService.setVisibility(View.VISIBLE);
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            adapter = new CallServiceCustomAdapter(getActivity(), arrayID, arrayShowQue, arrayCID,arrayTime, transaction);
-            lvQue.setAdapter(adapter);
+            if (arrayShowQue.size() > 0){
+                conCallService.setVisibility(View.VISIBLE);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                adapter = new CallServiceCustomAdapter(getActivity(), arrayID, arrayShowQue, arrayCID,arrayTime, transaction);
+                lvQue.setAdapter(adapter);
+            }else {
+                conCallService.setVisibility(View.GONE);
+                LayoutInflater layoutInflater = (LayoutInflater)getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+                menuView = layoutInflater.inflate(R.layout.popup, null);
+                menuPopup = new PopupWindow(menuView, ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.MATCH_PARENT);
+                menuPopup.showAtLocation(menuView, Gravity.CENTER, 0, 0);
+
+                Button btnClose = (Button) menuView.findViewById(R.id.btn_close);
+                btnClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        menuPopup.dismiss();
+                        getActivity().getSupportFragmentManager().popBackStackImmediate(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    }
+                });
+
+            }
         }
     }
     public String getHttpGet(String url) {
@@ -145,6 +171,13 @@ public class CallServiceFragment extends Fragment {
             e.printStackTrace();
         }
         return str.toString();
+    }
+
+    public void onPause() {
+        super.onPause();
+        if (menuPopup != null && menuPopup.isShowing()) {
+            menuPopup.dismiss();
+        }
     }
 
 }

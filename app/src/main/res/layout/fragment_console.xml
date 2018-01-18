@@ -22,6 +22,7 @@
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/color_e1e2dc"
             android:orientation="horizontal">
 
             <android.support.constraint.ConstraintLayout
@@ -43,6 +44,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Register"
+                    android:textColor="@color/color_425955"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/textView5"
@@ -72,8 +74,11 @@
                 android:id="@+id/btnRegister"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/color_dc3843"
                 android:text="Register"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -95,33 +100,35 @@
         app:layout_constraintTop_toBottomOf="@+id/rowRegister">
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/Layout3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/color_e1e2dc"
             android:orientation="horizontal">
 
             <android.support.constraint.ConstraintLayout
-                android:id="@+id/linearLayout2"
+                android:id="@+id/Layout2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnRegister"
+                app:layout_constraintEnd_toStartOf="@+id/btnCF"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/tv4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Call Service [CF]"
+                    android:textColor="@color/color_425955"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/textView5"
+                    app:layout_constraintBottom_toTopOf="@+id/tv5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +136,7 @@
                     app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/tv5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -141,21 +148,23 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv4" />
             </android.support.constraint.ConstraintLayout>
 
             <Button
                 android:id="@+id/btnCF"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/color_dc3843"
                 android:text="CALL SERVICE"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/Layout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout2"
-                android:layout_marginRight="8dp" />
+                app:layout_constraintStart_toEndOf="@+id/Layout2"
+                app:layout_constraintTop_toTopOf="@+id/Layout2" />
         </android.support.constraint.ConstraintLayout>
     </TableRow>
 
