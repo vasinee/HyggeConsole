@@ -129,12 +129,7 @@ public class SelectStationFragment extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
-            CallServiceFragment callServiceFragment = new CallServiceFragment();
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, callServiceFragment);
-            transaction.commit();
-
-
+            getFragmentManager().popBackStackImmediate();
         }
     }
 

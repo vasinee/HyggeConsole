@@ -141,7 +141,6 @@ public class CallServiceFragment extends Fragment {
                         getActivity().getSupportFragmentManager().popBackStackImmediate(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     }
                 });
-
             }
         }
     }
