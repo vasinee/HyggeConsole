@@ -38,7 +38,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:text="คุณต้องกาที่จะออกจากระบบใช่หรือไม่"
+        android:text="คุณต้องการที่จะออกจากระบบใช่หรือไม่"
         android:textAlignment="center"
         android:textColor="@color/color_425955"
         android:textSize="18sp"

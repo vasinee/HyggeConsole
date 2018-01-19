@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment {
                 final JSONArray jArray = new JSONArray(resultServerDep);
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject jo = jArray.getJSONObject(i);
-                    depcode = jo.getString("department_his");
+                    depcode = jo.getString("department_id");
                     depname= jo.getString("department_name");
                     prefix = jo.getString("department_prefix");
                     arrayDepName.add(depname);

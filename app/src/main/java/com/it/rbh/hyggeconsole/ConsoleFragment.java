@@ -3,6 +3,8 @@ package com.it.rbh.hyggeconsole;
 
 
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,13 +14,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ConsoleFragment extends Fragment {
     Button btnRegister, btnCF;
+    TextView tvDepSelect;
+    SharedPreferences sp;
+    String depname;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_console, container, false);
+        sp = getActivity().getSharedPreferences("HYGGE_CONSOLE", Context.MODE_PRIVATE);
+        depname = sp.getString("depname", null);
+
+        tvDepSelect = (TextView) rootView.findViewById(R.id.tvDepSelect) ;
+        tvDepSelect.setText(depname);
 
         btnRegister = (Button) rootView.findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {

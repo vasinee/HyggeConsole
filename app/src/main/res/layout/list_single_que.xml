@@ -20,24 +20,30 @@
 
         <TextView
             android:id="@+id/tvTime"
-            android:layout_width="0dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:text="2018-01-17 07:44:14"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btnQue"
+            app:layout_constraintBottom_toBottomOf="@+id/btnQue"
             app:layout_constraintEnd_toStartOf="@+id/btnQue"
-            app:layout_constraintStart_toEndOf="@+id/tvCID" />
+            app:layout_constraintStart_toEndOf="@+id/tvCID"
+            app:layout_constraintTop_toTopOf="@+id/btnQue" />
 
         <TextView
             android:id="@+id/tvCID"
-            android:layout_width="0dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="4dp"
             android:layout_marginStart="8dp"
             android:text="0000000000000"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btnQue"
+            app:layout_constraintBottom_toBottomOf="@+id/btnQue"
             app:layout_constraintEnd_toStartOf="@+id/tvTime"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnQue" />
 
         <Button
             android:id="@+id/btnQue"
@@ -45,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:background="@color/color_dc3843"
             android:text="B000"

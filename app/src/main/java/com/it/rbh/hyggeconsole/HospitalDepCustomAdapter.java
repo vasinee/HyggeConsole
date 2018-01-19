@@ -73,11 +73,13 @@ public class HospitalDepCustomAdapter extends BaseAdapter {
                 public void onClick(View view) {
                     Toast.makeText(mInlfater.getContext(), " "+arrayDepCode.get(position).toString() , Toast.LENGTH_SHORT).show();
                     String depcode = arrayDepCode.get(position).toString();
+                    String depname = arrayDepName.get(position).toString();
                     String prefix = arrayPrefix.get(position).toString();
 
                     sp = mInlfater.getContext().getSharedPreferences("HYGGE_CONSOLE", Context.MODE_PRIVATE);
                     editor = sp.edit();
                     editor.putString("depcode", depcode);
+                    editor.putString("depname", depname);
                     editor.putString("prefix", prefix);
                     editor.commit();
 
