@@ -78,8 +78,7 @@ public class CallServiceCustomAdapter extends BaseAdapter
         holder.tvCID.setText((CharSequence) arrayCID.get(position));
         holder.tvTime.setText((CharSequence) arrayTime.get(position));
         holder.btnQue.setText((CharSequence) arrayShowQue.get(position));
-        holder.btnQue.setOnClickListener(new View.OnClickListener()
-        {
+        holder.btnQue.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Toast.makeText(mInlfater.getContext(), " "+arrayID.get(position).toString() , Toast.LENGTH_SHORT).show();
